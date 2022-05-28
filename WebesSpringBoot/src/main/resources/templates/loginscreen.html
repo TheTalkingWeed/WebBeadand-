@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Belépés</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            background-color: #3ab3cb;
+        }
+
+        #main-holder {
+            width: 40%;
+            height: 70%;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            background-color: #06789b;
+            border-radius: 7px;
+            box-shadow: 0px 0px 5px 2px black;
+        }
+
+        #login-header{
+            margin:0;
+            font-size: 50px;
+            font-style:oblique ;
+            font-weight: bolder;
+        }
+
+        
+
+        #login-form {
+            height: 90%;
+            align-self: flex-start;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .login-form-field::placeholder {
+            color: #3a3a3a;
+            opacity: 50%;
+        }
+
+        .login-form-field {
+            width: 110%;
+            height: 55%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: none;
+            border-bottom: 2px solid #2d24b8;
+            border-radius: 5px;
+            outline: none;
+            padding: 2px;
+            font-size: 15px;
+            font-weight: bold;
+            background: #3ab3cb;
+
+        }
+
+        #login-form-submit {
+            width: 130%;
+            height: 60%;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: black;
+            background: #7ecbc4;
+            cursor: pointer;
+            outline: none;
+            font-size: 15px;
+            font-weight: bold;
+            
+        }
+        
+        #login-form-submit:hover{
+            background: lawngreen;
+        }
+
+        input{
+            margin: 20px;
+        }
+
+
+        
+
+    </style>
+</head>
+<body>
+<main id="main-holder">
+    <h1 id="login-header">Belépés</h1>
+
+    
+
+    <form id="login-form">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Felhasználónév">
+        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Jelszó">
+        <button type="button" id="login-form-submit" onclick="submitevent()">Belépés</button>
+    </form>
+
+</main>
+<script type="text/javascript">
+
+    const loginForm = document.getElementById("login-form");
+
+    function submitevent(){
+
+        const username = loginForm.username.value;
+        const password = loginForm.password.value;
+
+
+
+        if (username === "user" && password === "psw") {
+
+            window.location="[[@{/users}]]";
+
+        } else {
+            alert("Helytelen felhasználónév vagy jelszó");
+        }
+    }
+</script>
+</body>
+</html>

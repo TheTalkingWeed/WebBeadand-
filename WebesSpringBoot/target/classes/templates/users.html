@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns: th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Felhasználók</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        body{
+            background: #3ab3cb;
+        }
+
+        #users-table{
+
+            background: aqua;
+
+        }
+
+        #editbutton,#deletebutton{
+            color: black;
+        }
+
+        #new-user-button{
+            border: 0;
+            color: black;
+            font-weight: 550;
+            font-size: 25px ;
+            background: #06789b;
+        }
+        #new-user-button:hover{
+            border: 0;
+            color: black;
+            background: #2d24b8 ;
+        }
+
+        #main-head-line{
+            color: black;
+        }
+
+        #users-table-body{
+            color: black;
+            font-weight: 700;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div id="main-head-line">
+        <h2>Felhasználók</h2>
+    </div>
+    <div class="m-2">
+<!--        <a class="h3 " th:href="@{/users/new}">Felhasználó hozzáadása</a>-->
+        <button type="button"  class="btn btn-secondary m-2" onclick="newuser()" id="new-user-button">Felhasználó hozzáadása</button>
+    </div>
+
+    <div th:if="@{message}" class="aler alert-success text-center">
+        [[${message}]]
+    </div>
+
+
+    <div>
+        <table class="table table-bordered" id="users-table">
+            <thead class = "thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+                <th>Vezeték név</th>
+                <th>Kereszt név</th>
+                <th>Jelszó</th>
+                <th>Opciók</th>
+            </tr>
+            </thead>
+            <tbody id="users-table-body">
+            <th:block th:each="user : ${listOfUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.firstName}]]</td>
+                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.password}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/users/edit/' + ${user.id}}" id="editbutton" >Szerkesztés</a>
+                        <a class="h4 "th:href="@{'/users/delete/' + ${user.id}}" id="deletebutton">Törlés</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script >
+    function newuser(){
+        window.location="[[@{/users/new}]]";
+    }
+
+
+</script>
+</body>
+</html>
